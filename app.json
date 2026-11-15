@@ -1,0 +1,103 @@
+{
+  "expo": {
+    "name": "Wren Pocket Studio",
+    "slug": "wren-pocket-studio",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "wrenpocketstudio",
+    "backgroundColor": "#0B121C",
+    "primaryColor": "#D3F73B",
+    "runtimeVersion": "58.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/508e5a61-40ba-4db8-b013-b9a1ad5f4343"
+    },
+    "newArchEnabled": true,
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B121C"
+    },
+    "ios": {
+      "bundleIdentifier": "studio.wren.pocket",
+      "buildNumber": "1",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Wren Pocket Studio uses the camera for your profile photo and for project reference images.",
+        "NSPhotoLibraryUsageDescription": "Wren Pocket Studio uses your photos as project references and for your profile photo.",
+        "NSMicrophoneUsageDescription": "Wren Pocket Studio uses the microphone so you can describe a project out loud.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "studio.wren.pocket",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0B121C"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/icon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-image",
+      "expo-sharing",
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0B121C",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Wren Pocket Studio uses your photos as project references and for your profile photo.",
+          "cameraPermission": "Wren Pocket Studio uses the camera for your profile photo and for project reference images.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Wren Pocket Studio uses the microphone so you can describe a project out loud.",
+          "recordAudioAndroid": true,
+          "enableBackgroundRecording": false,
+          "enableBackgroundPlayback": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "extra": {
+      "privacyPolicyUrl": "https://wren.studio/privacy",
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "508e5a61-40ba-4db8-b013-b9a1ad5f4343"
+      }
+    },
+    "owner": "naza123"
+  }
+}
