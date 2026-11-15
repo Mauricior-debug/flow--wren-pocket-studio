@@ -48,7 +48,7 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="assets"
+          name="library"
           options={{
             title: 'Assets',
             tabBarIcon: ({ color, size }) => <Ionicons name="image" color={String(color)} size={size} />,
@@ -90,7 +90,7 @@ export default function TabLayout() {
         <NativeTabs.Trigger.Label>Create</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="plus.circle.fill" md="add_circle" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="assets">
+      <NativeTabs.Trigger name="library">
         <NativeTabs.Trigger.Label>Assets</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={{ default: 'photo', selected: 'photo.fill' }} md="image" />
       </NativeTabs.Trigger>

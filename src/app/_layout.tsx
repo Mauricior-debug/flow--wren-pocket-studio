@@ -36,6 +36,9 @@ function Shell() {
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" options={{ animation: 'fade' }} />
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="builder" />
+        <Stack.Screen name="sign-in" />
+        <Stack.Screen name="sign-up" />
         <Stack.Screen name="voice-sheet" options={sheet} />
         <Stack.Screen name="new-sheet" options={{ ...sheet, sheetAllowedDetents: [0.72, 0.95] }} />
         <Stack.Screen name="google-sheet" options={{ ...sheet, sheetAllowedDetents: [0.52, 0.86] }} />

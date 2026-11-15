@@ -17,7 +17,7 @@ const steps = ['App Basics', 'References', 'Audience', 'Screens', 'Review'];
 export default function Builder() {
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ mode?: string; type?: string; projectId?: string }>();
-  const { draft, setDraft, patchDraft, saveBuilder, projects, attachFiles } = useStore();
+  const { ready, draft, setDraft, patchDraft, saveBuilder, projects, attachFiles } = useStore();
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const mode = (params.mode === 'edit' || params.mode === 'feature' ? params.mode : 'create') as 'create' | 'edit' | 'feature';
@@ -25,7 +25,8 @@ export default function Builder() {
   const seen = useRef('');
 
   useEffect(() => {
-    if (seen.current === signature) return;
+    if (!ready) return;
+    if (seen.current === signature && draft) return;
     seen.current = signature;
     const existing = params.projectId ? projects.find((item) => item.id === params.projectId) : undefined;
     setDraft({
@@ -45,7 +46,7 @@ export default function Builder() {
       files: existing?.files ?? [],
       screenNames: [],
     });
-  }, [signature]);
+  }, [ready, signature, draft, mode, params.projectId, params.type, projects, setDraft]);
 
   if (!draft) return <View style={styles.screen} />;
 

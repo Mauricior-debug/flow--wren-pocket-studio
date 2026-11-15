@@ -205,7 +205,7 @@ export function buildDemoRecords(userId: string) {
     { id: uid('note'), userId, type: 'build', title: 'Build completed', message: 'Your app TeamFlow App is ready.', read: false, createdAt: agoIso(1000 * 60 * 2), projectId: teamId, route: `/project/${teamId}` },
     { id: uid('note'), userId, type: 'milestone', title: 'New visitor milestone', message: 'Ridge Builders reached 1,000 visitors!', read: false, createdAt: agoIso(1000 * 60 * 60), projectId: ridgeId, route: `/project/${ridgeId}` },
     { id: uid('note'), userId, type: 'deploy', title: 'Deployment successful', message: 'Wellness Studio is now live.', read: false, createdAt: agoIso(1000 * 60 * 60 * 3), projectId: wellId, route: `/project/${wellId}` },
-    { id: uid('note'), userId, type: 'feature', title: 'New feature available', message: 'Try our new AI design assistant.', read: false, createdAt: agoIso(1000 * 60 * 60 * 24), route: '/(tabs)/assets' },
+    { id: uid('note'), userId, type: 'feature', title: 'New feature available', message: 'Try our new AI design assistant.', read: false, createdAt: agoIso(1000 * 60 * 60 * 24), route: '/(tabs)/library' },
     { id: uid('note'), userId, type: 'welcome', title: 'Welcome to Wren Studio!', message: 'Thanks for joining! Let’s build something amazing.', read: true, createdAt: agoIso(1000 * 60 * 60 * 24 * 2), route: '/(tabs)' },
   ];
 
