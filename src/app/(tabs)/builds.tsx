@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StudioHeader } from '../../components/chrome';
 import { Button, EmptyState, Pill } from '../../components/ui';
 import { useCrm } from '../../data/crm';
+import { asText } from '../../lib/activityText';
 import { useTabScrollToTop } from '../../lib/useTabScrollToTop';
 import { colors, fonts, radius } from '../../theme/tokens';
 
@@ -71,12 +72,12 @@ export default function Builds() {
               <Pill label={String(d.status || d.runStatus || item.status || 'building')} tone={d.error || d.expoError ? 'red' : 'purple'} />
             </View>
             <Text style={styles.meta}>{kind}</Text>
-            {d.current || d.activity ? (
+            {asText(d.current) || asText(d.activity) ? (
               <Text style={styles.live} numberOfLines={3}>
-                {d.current || d.activity}
+                {asText(d.current) || asText(d.activity)}
               </Text>
             ) : null}
-            {d.error || d.expoError ? <Text style={styles.err}>{d.error || d.expoError}</Text> : null}
+            {asText(d.error) || asText(d.expoError) ? <Text style={styles.err}>{asText(d.error) || asText(d.expoError)}</Text> : null}
             <View style={styles.actions}>
               {d.repoUrl ? (
                 <Pressable accessibilityRole="button" onPress={() => Linking.openURL(d.repoUrl)}>

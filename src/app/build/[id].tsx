@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StudioHeader } from '../../components/chrome';
 import { Button, Pill } from '../../components/ui';
 import { useCrm } from '../../data/crm';
+import { activityLines, asText } from '../../lib/activityText';
 import { colors, fonts, radius } from '../../theme/tokens';
 
 export default function BuildDetail() {
@@ -39,10 +40,18 @@ export default function BuildDetail() {
       <Text style={styles.title}>{prospect.companyName || 'Build'}</Text>
       <Pill label={String(delivery.status || delivery.runStatus || 'building')} tone={delivery.error ? 'red' : 'purple'} />
       <Text style={styles.meta}>Stack: {delivery.appKind || '—'}</Text>
-      {delivery.current ? <Text style={styles.live}>{delivery.current}</Text> : null}
-      {delivery.activity ? <Text style={styles.body}>{delivery.activity}</Text> : null}
-      {delivery.note || delivery.speech ? <Text style={styles.body}>{delivery.note || delivery.speech}</Text> : null}
-      {delivery.error || delivery.expoError ? <Text style={styles.err}>{delivery.error || delivery.expoError}</Text> : null}
+      {asText(delivery.current) ? <Text style={styles.live}>{asText(delivery.current)}</Text> : null}
+      {activityLines(delivery.activity).map((line, index) => (
+        <Text key={`activity-${index}`} style={styles.body}>
+          {line}
+        </Text>
+      ))}
+      {asText(delivery.note) || asText(delivery.speech) ? (
+        <Text style={styles.body}>{asText(delivery.note) || asText(delivery.speech)}</Text>
+      ) : null}
+      {asText(delivery.error) || asText(delivery.expoError) ? (
+        <Text style={styles.err}>{asText(delivery.error) || asText(delivery.expoError)}</Text>
+      ) : null}
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Links</Text>

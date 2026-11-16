@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StudioHeader } from '../../components/chrome';
 import { Button, EmptyState, ErrorState, Pill, SectionTitle } from '../../components/ui';
 import { useCrm } from '../../data/crm';
+import { asText } from '../../lib/activityText';
 import { STATUS_FILTERS, WREN_FUNNEL, WREN_RUN_TASKS } from '../../lib/wrenConstants';
 import { useTabScrollToTop } from '../../lib/useTabScrollToTop';
 import { colors, fonts, radius } from '../../theme/tokens';
@@ -152,12 +153,12 @@ export default function Desk() {
               <Text style={styles.meta} numberOfLines={1}>
                 {prospect.websiteUrl || prospect.contactName || prospect.email || 'No website yet'}
               </Text>
-              {prospect.buildDelivery?.current || prospect.buildDelivery?.activity ? (
+              {asText(prospect.buildDelivery?.current) || asText(prospect.buildDelivery?.activity) ? (
                 <Text style={styles.live} numberOfLines={2}>
-                  {prospect.buildDelivery.current || prospect.buildDelivery.activity}
+                  {asText(prospect.buildDelivery?.current) || asText(prospect.buildDelivery?.activity)}
                 </Text>
               ) : null}
-              {prospect.lastError ? <Text style={styles.err}>{prospect.lastError}</Text> : null}
+              {asText(prospect.lastError) ? <Text style={styles.err}>{asText(prospect.lastError)}</Text> : null}
             </Pressable>
           ))}
         </View>
