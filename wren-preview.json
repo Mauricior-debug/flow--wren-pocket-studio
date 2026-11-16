@@ -5,8 +5,8 @@
   "slug": "wren-pocket-studio",
   "channel": "preview",
   "runtimeVersion": "58.0.0",
-  "group": "df753b34-9509-47a7-9d66-dd66b8c82239",
-  "publishedAt": "2026-11-15T20:32:52.252Z",
-  "message": "Wren preview: builder + assets tab fixes",
+  "group": "480f8516-f47d-4d86-9f3b-5a061addd69a",
+  "publishedAt": "2026-11-16T20:04:55.406Z",
+  "message": "Wren CRM desk parity on Expo 58",
   "qrUrl": "https://qr.expo.dev/eas-update?slug=exp&projectId=508e5a61-40ba-4db8-b013-b9a1ad5f4343&runtimeVersion=58.0.0&channel=preview"
 }
