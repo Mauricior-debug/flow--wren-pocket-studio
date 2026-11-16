@@ -2,11 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { Redirect, Tabs } from 'expo-router';
 import { NativeTabs } from 'expo-router/native-tabs';
 import { Platform } from 'react-native';
-import { useStore } from '../../data/store';
+import { useCrm } from '../../data/crm';
 import { colors, fonts } from '../../theme/tokens';
 
 export default function TabLayout() {
-  const { user, ready } = useStore();
+  const { user, ready } = useCrm();
   if (ready && !user) return <Redirect href="/sign-in" />;
 
   if (Platform.OS === 'web') {
@@ -26,41 +26,14 @@ export default function TabLayout() {
           tabBarLabelStyle: { fontFamily: fonts.semibold, fontSize: 11 },
         }}
       >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color, size }) => <Ionicons name="home" color={String(color)} size={size} />,
-          }}
-        />
-        <Tabs.Screen
-          name="projects"
-          options={{
-            title: 'Projects',
-            tabBarIcon: ({ color, size }) => <Ionicons name="layers" color={String(color)} size={size} />,
-          }}
-        />
-        <Tabs.Screen
-          name="create"
-          options={{
-            title: 'Create',
-            tabBarIcon: ({ color, size }) => <Ionicons name="add-circle" color={String(color)} size={size} />,
-          }}
-        />
-        <Tabs.Screen
-          name="library"
-          options={{
-            title: 'Assets',
-            tabBarIcon: ({ color, size }) => <Ionicons name="image" color={String(color)} size={size} />,
-          }}
-        />
-        <Tabs.Screen
-          name="settings"
-          options={{
-            title: 'Settings',
-            tabBarIcon: ({ color, size }) => <Ionicons name="settings" color={String(color)} size={size} />,
-          }}
-        />
+        <Tabs.Screen name="index" options={{ title: 'Desk', tabBarIcon: ({ color, size }) => <Ionicons name="grid" color={String(color)} size={size} /> }} />
+        <Tabs.Screen name="job" options={{ title: 'Job', tabBarIcon: ({ color, size }) => <Ionicons name="chatbubbles" color={String(color)} size={size} /> }} />
+        <Tabs.Screen name="builds" options={{ title: 'Builds', tabBarIcon: ({ color, size }) => <Ionicons name="construct" color={String(color)} size={size} /> }} />
+        <Tabs.Screen name="prompts" options={{ title: 'Prompts', tabBarIcon: ({ color, size }) => <Ionicons name="color-palette" color={String(color)} size={size} /> }} />
+        <Tabs.Screen name="settings" options={{ title: 'Settings', tabBarIcon: ({ color, size }) => <Ionicons name="settings" color={String(color)} size={size} /> }} />
+        <Tabs.Screen name="projects" options={{ href: null }} />
+        <Tabs.Screen name="create" options={{ href: null }} />
+        <Tabs.Screen name="library" options={{ href: null }} />
       </Tabs>
     );
   }
@@ -79,20 +52,20 @@ export default function TabLayout() {
       disableTransparentOnScrollEdge
     >
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf={{ default: 'house', selected: 'house.fill' }} md="home" />
+        <NativeTabs.Trigger.Label>Desk</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'square.grid.2x2', selected: 'square.grid.2x2.fill' }} md="grid_view" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="projects">
-        <NativeTabs.Trigger.Label>Projects</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf={{ default: 'square.stack.3d.up', selected: 'square.stack.3d.up.fill' }} md="layers" />
+      <NativeTabs.Trigger name="job">
+        <NativeTabs.Trigger.Label>Job</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'bubble.left.and.bubble.right', selected: 'bubble.left.and.bubble.right.fill' }} md="chat" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="create">
-        <NativeTabs.Trigger.Label>Create</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="plus.circle.fill" md="add_circle" />
+      <NativeTabs.Trigger name="builds">
+        <NativeTabs.Trigger.Label>Builds</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'hammer', selected: 'hammer.fill' }} md="build" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="library">
-        <NativeTabs.Trigger.Label>Assets</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf={{ default: 'photo', selected: 'photo.fill' }} md="image" />
+      <NativeTabs.Trigger name="prompts">
+        <NativeTabs.Trigger.Label>Prompts</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'paintpalette', selected: 'paintpalette.fill' }} md="palette" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
         <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>

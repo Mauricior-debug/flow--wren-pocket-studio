@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from '../components/ui';
-import { useStore } from '../data/store';
+import { useCrm } from '../data/crm';
 import { images } from '../theme/images';
 import { colors, fonts } from '../theme/tokens';
 
 export default function Splash() {
-  const { ready, error, user, onboarded, retry, resetDevice } = useStore();
+  const { ready, error, user, onboarded, refreshSession } = useCrm();
   const insets = useSafeAreaInsets();
   const [progress, setProgress] = useState(0.08);
   const [hold, setHold] = useState(true);
@@ -18,7 +18,7 @@ export default function Splash() {
     const timer = setInterval(() => {
       setProgress((value) => (value >= 0.92 ? 0.92 : value + 0.08));
     }, 120);
-    const done = setTimeout(() => setHold(false), 1100);
+    const done = setTimeout(() => setHold(false), 900);
     return () => {
       clearInterval(timer);
       clearTimeout(done);
@@ -37,21 +37,20 @@ export default function Splash() {
       <Text style={styles.title}>
         Wren <Text style={styles.lime}>Studio</Text>
       </Text>
-      <Text style={styles.tag}>AI Website & App Architect</Text>
-      <Image source={images.astronaut} style={styles.hero} contentFit="contain" accessibilityLabel="Wren, the astronaut mascot, in a lime suit with a clipboard and a globe" />
+      <Text style={styles.tag}>Pocket desk for FlowTrack Wren</Text>
+      <Image source={images.astronaut} style={styles.hero} contentFit="contain" accessibilityLabel="Wren astronaut" />
       {error ? (
         <View style={styles.errorBox}>
-          <Text style={styles.errorTitle}>Workspace didn’t load</Text>
+          <Text style={styles.errorTitle}>Couldn’t restore the session</Text>
           <Text style={styles.errorBody}>{error}</Text>
-          <Button label="Try again" onPress={retry} />
-          <Button label="Reset this device" kind="secondary" onPress={resetDevice} />
+          <Button label="Try again" onPress={refreshSession} />
         </View>
       ) : (
         <View style={styles.loading}>
           <View style={styles.track}>
             <View style={[styles.fill, { width: `${Math.round(progress * 100)}%` }]} />
           </View>
-          <Text style={styles.loadingText}>Loading your creative workspace...</Text>
+          <Text style={styles.loadingText}>Opening Wren’s desk…</Text>
         </View>
       )}
     </View>

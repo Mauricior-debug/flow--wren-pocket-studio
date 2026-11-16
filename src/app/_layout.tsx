@@ -13,7 +13,8 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Toast } from '../components/ui';
-import { StoreProvider, useStore } from '../data/store';
+import { CrmProvider, useCrm } from '../data/crm';
+import { StoreProvider } from '../data/store';
 import { colors } from '../theme/tokens';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -28,7 +29,7 @@ const sheet = {
 };
 
 function Shell() {
-  const { toast } = useStore();
+  const { toast } = useCrm();
   return (
     <View style={styles.root}>
       <StatusBar style="light" />
@@ -36,14 +37,14 @@ function Shell() {
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" options={{ animation: 'fade' }} />
         <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="builder" />
         <Stack.Screen name="sign-in" />
-        <Stack.Screen name="sign-up" />
-        <Stack.Screen name="voice-sheet" options={sheet} />
-        <Stack.Screen name="new-sheet" options={{ ...sheet, sheetAllowedDetents: [0.72, 0.95] }} />
-        <Stack.Screen name="google-sheet" options={{ ...sheet, sheetAllowedDetents: [0.52, 0.86] }} />
-        <Stack.Screen name="delete-sheet" options={{ ...sheet, sheetAllowedDetents: [0.42, 0.7] }} />
-        <Stack.Screen name="picker-sheet" options={{ ...sheet, sheetAllowedDetents: [0.5, 0.88] }} />
+        <Stack.Screen name="verify-2fa" />
+        <Stack.Screen name="prospect/[id]" />
+        <Stack.Screen name="build/[id]" />
+        <Stack.Screen name="follow-up-sheet" options={{ ...sheet, sheetAllowedDetents: [0.62, 0.92] }} />
+        <Stack.Screen name="desk-options-sheet" options={{ ...sheet, sheetAllowedDetents: [0.72, 0.95] }} />
+        <Stack.Screen name="pdf-sheet" options={{ ...sheet, sheetAllowedDetents: [0.7, 0.95] }} />
+        <Stack.Screen name="role-sheet" options={{ ...sheet, sheetAllowedDetents: [0.55, 0.88] }} />
       </Stack>
       <Toast message={toast} />
     </View>
@@ -67,9 +68,11 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <StoreProvider>
-        <Shell />
-      </StoreProvider>
+      <CrmProvider>
+        <StoreProvider>
+          <Shell />
+        </StoreProvider>
+      </CrmProvider>
     </SafeAreaProvider>
   );
 }
